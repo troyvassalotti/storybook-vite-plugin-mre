@@ -11,13 +11,9 @@ module.exports = {
   features: { buildStoriesJson: true },
   async viteFinal(config, { configType }) {
     return mergeConfig(config, {
-      plugins: [postcssLit()], // Results in error in Storybook dev server
-      // plugins: [postcssLit({
-      //    include: ['**/*.scss', '**/*.scss\?*', '**/*.css', '**/*.css\?*'] // Results in error in Storybook dev server
-      //  })],
-      // plugins: [postcssLit({
-      //   include: ['**/*.scss', '**/*.scss\?*'] // Works, but excludes .css files
-      // })],
+      plugins: [postcssLit()], // Results in error in Storybook dev server in vite@2.9.7
+      // plugins: [postcssLit({include: ['**/*.scss', '**/*.scss\?*', '**/*.css', '**/*.css\?*']})], // Previous solution to https://github.com/umbopepato/rollup-plugin-postcss-lit/issues/49#issue-1214506816, now results in error in Storybook dev server in vite@2.9.7
+      // plugins: [postcssLit({include: ['**/*.scss', '**/*.scss\?*']})], // Works to import SASS in Lit components and works with vite@2.9.7 but excludes ability to process .css files
     });
   },
 };
